@@ -8,7 +8,8 @@ class AttendancesController < ApplicationController
 
 	def create
 		@attendance = current_user.attendances.create(clockin: Time.zone.now)
-		redirect_to :back
+		redirect_to :back if @attendance 
+
 	end
 
 	def update

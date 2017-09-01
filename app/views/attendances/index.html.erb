@@ -19,7 +19,10 @@
       <tr>
         <td><%= attendance.clockin.strftime("%H:%M:%S") %></td>
         <td><%= attendance.clockout&.strftime("%H:%M:%S") %></td>
-        <td><%= Time.at(attendance.work).utc.strftime("%H:%M:%S") if attendance.work %></td>
+        <% if current_attendance == attendance %>
+        <% else %>
+          <td><%= attendance.work ? Time.at(attendance.work).utc.strftime("%H:%M:%S") : "Absent" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

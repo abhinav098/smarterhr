@@ -8,10 +8,10 @@ class AttendancesControllerTest < ActionController::TestCase
 
   test "should redirect index if not logged in" do
     get :index
-   	assert_response :redirect
+   	assert_redirected_to new_user_session_path	
   end
 
-  test "should get index" do
+  test "should get index after sign_in" do
     sign_in @user
     get :index
     assert_response :success
