@@ -1,0 +1,26 @@
+<div align="center">
+	<h1>PrepHR</h1>
+	<%= link_to "SignOut",destroy_user_session_path, method: :delete%>
+	<br>
+	<br>
+	<%= render 'form' %>
+	<br>
+</div>
+<table align="center">
+  <thead>
+    <tr>
+      <th>Clock In</th>
+      <th>Clock Out</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @attendances.each do |attendance| %>
+      <tr>
+        <td><%= attendance.clockin.strftime("%H:%M:%S") %></td>
+        <td><%= attendance.clockout&.strftime("%H:%M:%S") %></td>
+        <td><%= Time.at(attendance.work).utc.strftime("%H:%M:%S") if attendance.work %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

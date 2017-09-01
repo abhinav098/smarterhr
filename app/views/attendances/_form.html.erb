@@ -1,0 +1,3 @@
+<%= form_for @attendance do |f|%>
+	<%= f.submit @attendance.new_record? ? 'Clock In' : 'Clock Out' %>
+<% end %>

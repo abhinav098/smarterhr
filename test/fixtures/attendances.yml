@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clockin: 2017-08-31 22:35:23
+  clockout: 2017-08-31 22:35:23
+  work: 1
+  user: one
+
+two:
+  clockin: 2017-08-31 22:35:23
+  clockout: 2017-08-31 22:35:23
+  work: 1
+  user: two
