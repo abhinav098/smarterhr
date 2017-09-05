@@ -1,29 +1,7 @@
+<% provide(:title, "Attendance") %>
+<br>
 <div align="center">
-	<h1>PrepHR</h1>
-	<%= link_to "SignOut",destroy_user_session_path, method: :delete%>
-	<br>
-	<br>
 	<%= render 'form' %>
-	<br>
+	<%= render 'attendance'%>  
+	<%= link_to "Request Leave", new_leave_path, class: "button success tiny" %>
 </div>
-<table align="center">
-  <thead>
-    <tr>
-      <th>Clock In</th>
-      <th>Clock Out</th>
-      <th>Duration</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @attendances.each do |attendance| %>
-      <tr>
-        <td><%= attendance.clockin.strftime("%H:%M:%S") %></td>
-        <td><%= attendance.clockout&.strftime("%H:%M:%S") %></td>
-        <% if current_attendance == attendance %>
-        <% else %>
-          <td><%= attendance.work ? Time.at(attendance.work).utc.strftime("%H:%M:%S") : "Absent" %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>

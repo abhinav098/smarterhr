@@ -1,0 +1,33 @@
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/">PrepHR</a></h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <%if user_signed_in? %>
+       <li class="has-dropdown">
+        <a href="#"> <%= current_user.email %> </a>
+        <ul class="dropdown">
+          <li> <%= link_to "Profile",edit_user_registration_path %></li>
+          <li> <%= link_to "SignOut",destroy_user_session_path, method: :delete%></li>
+        </ul>
+       </li>
+      <% end %>        
+    </ul>
+
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li class="has-dropdown">
+        <a href="#"> Leaves </a>
+        <ul class="dropdown">
+          <li><a href="/leaves">View Leaves</a></li>
+          <li><a href="/leaves/new">Apply For Leave</a></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</nav>

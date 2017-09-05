@@ -1,0 +1,9 @@
+<% provide(:title, "Leaves") %>
+<h1 align = "center"> Leaves </h1>
+
+<%= render 'leave' %>
+
+<%= month_calendar(attribute: :from_date, end_attribute: :to_date) do |date| %>
+  <%= date %>
+<% end %>
+
