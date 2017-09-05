@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901162302) do
+ActiveRecord::Schema.define(version: 20170906040115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20170901162302) do
   create_table "leaves", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "message"
-    t.string   "status"
     t.datetime "from_date"
     t.datetime "to_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "state",      default: 2
     t.index ["user_id"], name: "index_leaves_on_user_id", using: :btree
   end
 

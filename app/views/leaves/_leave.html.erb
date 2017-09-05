@@ -15,11 +15,16 @@
         <td><%= leave.from %></td>
         <td><%= leave.to %></td>
         <td><%= leave.days %></td>
-        <td><%= leave.status %></td>
-        <td><%= link_to "Edit", edit_leave_path(leave) %> | 
+        <td><%= leave.state.capitalize %></td>
+        <td><%= link_to "View", leave_path(leave) %> | 
+        <%= link_to "Edit", edit_leave_path(leave) %> | 
          <%= link_to "Cancel", leave_path(leave), method: :delete %></td>
-        <td><%= link_to "Approve", edit_leave_path(leave) %> | 
-         <%= link_to "Reject", edit_leave_path(leave) %></td>
+        <td>
+          <%= form_for leave do |f|%>
+            <%= f.submit "Approved", class: "button tiny success round" %>
+            <%= f.submit "Rejected" , class: "button tiny alert round" %>
+          <% end %>
+        </td> 
       </tr>
     <% end %>
   </tbody>

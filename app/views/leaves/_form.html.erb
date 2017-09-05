@@ -10,9 +10,6 @@
 	  <%= f.label :message %>
 	  <%= f.text_field :message, class: 'form-control' ,placeholder: 'Enter Message' %>
 	  
-	  <%= f.label :status %>
-	  <%= f.collection_select :status, Leave::STATES, :to_s, :to_s, :include_blank => true %>
-
 		<%= f.submit 'Apply', class: "button success small" %>
 	<% end %>
 </div>

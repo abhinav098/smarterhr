@@ -7,12 +7,18 @@ class LeavesController < ApplicationController
 	end
 
 	def index
-		@leaves = current_user.leaves
+		@leaves = current_user.leaves.order(:created_at)
 	end
 
 	def create
-		@leave = current_user.leaves.create(leave_params)
+		@leave = current_user.leaves.new(leave_params)
+		if @leave.correct_leave
+			@leave.save
 			redirect_to @leave , notice: 'Leave has been successfully requested.'
+		else
+			render 'new'
+			# notice: 'Leave dates incorrect.'
+		end
 	end
 
 	def edit
@@ -20,11 +26,15 @@ class LeavesController < ApplicationController
 	end
 	
 	def update
-		if @leave.update(leave_params)
-			redirect_to @leave
+		if action? :approved
+			@leave.approved!
+			redirect_to :leaves
+		elsif action? :rejected
+			@leave.rejected!
+			redirect_to :leaves
 		else
-			render 'new'
-      render @leave.errors
+			@leave.update(leave_params)
+			redirect_to :leaves
 		end
 	end
 
@@ -34,6 +44,10 @@ class LeavesController < ApplicationController
 	end
 
 	private 
+
+	def action?(act)
+    params['commit'].casecmp(act.to_s.downcase).zero?
+  end
 
 	def find_leave
 		@leave = Leave.find(params[:id])

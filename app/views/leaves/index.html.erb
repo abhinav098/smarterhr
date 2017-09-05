@@ -1,9 +1,18 @@
 <% provide(:title, "Leaves") %>
-<h1 align = "center"> Leaves </h1>
+<div class="panel" align="center">
+	<h1> Leaves </h1>
+	<%= link_to "Apply", new_leave_path, class: "button round tiny" %>
 
 <%= render 'leave' %>
-
-<%= month_calendar(attribute: :from_date, end_attribute: :to_date) do |date| %>
+<%= month_calendar events: @leaves do |date, leaves| %>
   <%= date %>
-<% end %>
 
+  <% leaves.each  do |leave| %>
+    <div>
+	    <% if leave.state == 'approved'  %>
+	       <b>On Leave</b> (<%= leave.user.email %>)
+	    <% end %>
+    </div>
+ <% end %>
+<% end %>
+</div>
