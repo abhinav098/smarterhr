@@ -12,5 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require turbolinks
 //= require_tree .
+//= require moment 
+//= require fullcalendar
+//= require jquery-ui
+//= require jquery-ui/widgets/datepicker
+//= require jquery-ui/effect.all
+
+$('#calendar').fullCalendar({});
+$(function(){ $(document).foundation(); });
+
+$(function() {
+  $('.datepicker').datepicker();
+});

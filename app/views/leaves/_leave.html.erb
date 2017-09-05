@@ -1,0 +1,31 @@
+<table align="center">
+  <thead>
+    <tr>
+      <th> From  </th>
+      <th> To </th>
+      <th> Days </th>
+      <th> Status </th>
+      <th> Actions</th>
+      <th> Mgr_actions </th> 
+    </tr>
+  </thead>
+  <tbody>
+    <% @leaves.each do |leave| %>
+      <tr>
+        <td><%= leave.from %></td>
+        <td><%= leave.to %></td>
+        <td><%= leave.days %></td>
+        <td><%= leave.state.capitalize %></td>
+        <td><%= link_to "View", leave_path(leave) %> | 
+        <%= link_to "Edit", edit_leave_path(leave) %> | 
+         <%= link_to "Cancel", leave_path(leave), method: :delete %></td>
+        <td>
+          <%= form_for leave do |f|%>
+            <%= f.submit "Approved", class: "button tiny success round" %>
+            <%= f.submit "Rejected" , class: "button tiny alert round" %>
+          <% end %>
+        </td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>

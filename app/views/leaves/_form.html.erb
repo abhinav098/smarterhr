@@ -1,0 +1,16 @@
+<div class = "panel">
+	<h1> Apply For a leave </h1>
+	<%= form_for @leave do |f| %>
+	  <%= f.label :from %>
+	  <%= f.date_field :from_date, class: 'form-control', placeholder: 'Select From Date' %>
+
+	  <%= f.label :to %>
+	  <%= f.date_field :to_date,  class: 'form-control', placeholder: 'Select To Date' %>
+
+	  <%= f.label :message %>
+	  <%= f.text_field :message, class: 'form-control' ,placeholder: 'Enter Message' %>
+	  
+		<%= f.submit 'Apply', class: "button success small" %>
+	<% end %>
+</div>
+

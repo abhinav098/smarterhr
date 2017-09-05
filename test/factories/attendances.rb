@@ -2,6 +2,6 @@
 FactoryGirl.define do
   factory :attendance do
   	user
-    clockin { Faker::Time.between(DateTime.now - 1, DateTime.now) }
+    clockin Time.zone.now
   end
 end

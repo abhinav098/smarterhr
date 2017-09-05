@@ -1,14 +1,9 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>PrepHR</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
+<html lang="en">
+  <%= render 'layouts/head' %>
   <body>
+    <%= render 'layouts/header' %>
     <%= yield %>
+    <%= javascript_include_tag "application" %>
   </body>
 </html>
