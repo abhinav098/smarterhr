@@ -1,7 +1,7 @@
 class Leave < ApplicationRecord
   belongs_to :user
 
-  enum state: [:approved, :rejected, :open]
+  enum state: [:approved, :rejected, :open, :revoked]
   
   validates :message, presence:true
   validates :to_date, presence:true
