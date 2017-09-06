@@ -17,7 +17,7 @@ class LeavesController < ApplicationController
 			redirect_to @leave , notice: 'Leave has been successfully requested.'
 		else
 			render 'new'
-			# notice: 'Leave dates incorrect.'
+			 flash[:notice] = 'Leave dates incorrect.'
 		end
 	end
 
@@ -26,10 +26,10 @@ class LeavesController < ApplicationController
 	end
 	
 	def update
-		if action? :approved
+		if action? :approve
 			@leave.approved!
 			redirect_to :leaves
-		elsif action? :rejected
+		elsif action? :reject
 			@leave.rejected!
 			redirect_to :leaves
 		else

@@ -5,8 +5,8 @@
       <th> To </th>
       <th> Days </th>
       <th> Status </th>
-      <th> Actions</th>
-      <th> Mgr_actions </th> 
+      <th> </th>
+      <th> Manager actions </th> 
     </tr>
   </thead>
   <tbody>
@@ -16,13 +16,17 @@
         <td><%= leave.to %></td>
         <td><%= leave.days %></td>
         <td><%= leave.state.capitalize %></td>
-        <td><%= link_to "View", leave_path(leave) %> | 
-        <%= link_to "Edit", edit_leave_path(leave) %> | 
-         <%= link_to "Cancel", leave_path(leave), method: :delete %></td>
+        <td><%= link_to "View", leave_path(leave) , class: "button tiny success round"%> 
+        <%= link_to "Edit", edit_leave_path(leave) , class: "button tiny round"%> 
+         <%= link_to "Revoke", leave_path(leave), method: :delete, class: "button tiny alert round" %></td>
         <td>
           <%= form_for leave do |f|%>
-            <%= f.submit "Approved", class: "button tiny success round" %>
-            <%= f.submit "Rejected" , class: "button tiny alert round" %>
+            <%= f.submit (leave.open? || leave.rejected?) ? "Approve" : "Reject" , class: "button tiny round" %>
+            <%# if leave.open? || leave.rejected? %>
+            <%#= f.submit "Approve", class: "button tiny success round" %>
+            <%# else %>
+            <%#= f.submit "Reject" , class: "button tiny alert round" %>
+            <%# end %>
           <% end %>
         </td> 
       </tr>
