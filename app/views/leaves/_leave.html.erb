@@ -1,34 +1,41 @@
 <table align="center">
   <thead>
     <tr>
+      <th> Empolyee Name </th>
       <th> From  </th>
       <th> To </th>
       <th> Days </th>
       <th> Status </th>
-      <th> </th>
-      <th> Manager actions </th> 
+      <% if current_user.manager? %>
+        <th> Manager actions </th>
+      <% else %>
+        <th> Actions </th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
     <% @leaves.each do |leave| %>
       <tr>
+        <td><%= leave.user.full_name %></td>
         <td><%= leave.from %></td>
         <td><%= leave.to %></td>
         <td><%= leave.days %></td>
         <td><%= leave.state.capitalize %></td>
-        <td><%= link_to "View", leave_path(leave) , class: "button tiny success round"%> 
-        <%= link_to "Edit", edit_leave_path(leave) , class: "button tiny round"%> 
-         <%= link_to "Revoke", leave_path(leave), method: :delete, class: "button tiny alert round" %></td>
-        <td>
-          <%= form_for leave do |f|%>
-            <%= f.submit (leave.open? || leave.rejected?) ? "Approve" : "Reject" , class: "button tiny round" %>
-            <%# if leave.open? || leave.rejected? %>
-            <%#= f.submit "Approve", class: "button tiny success round" %>
-            <%# else %>
-            <%#= f.submit "Reject" , class: "button tiny alert round" %>
-            <%# end %>
-          <% end %>
-        </td> 
+        <% if current_user.manager? %>
+          <td>
+            <%= form_for leave do |f|%>
+              <% if leave.open? || leave.rejected? %>
+                <%= f.submit "Approve", class: "button tiny success round" %>
+              <% else %>
+                <%= f.submit "Reject" , class: "button tiny alert round" %>
+              <% end %>
+            <% end %>
+          </td>
+        <% else %>
+          <td><%= link_to "View", leave_path(leave) , class: "button tiny success round"%>
+          <%= link_to "Edit", edit_leave_path(leave) , class: "button tiny round"%>
+           <%= link_to "Revoke", leave_path(leave), method: :delete, class: "button tiny alert round" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
