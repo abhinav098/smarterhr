@@ -16,7 +16,7 @@
   <tbody>
     <% @leaves.each do |leave| %>
       <tr>
-        <td><%= leave.user.full_name %></td>
+        <td><%= leave.user.full_name.capitalize %></td>
         <td><%= leave.from %></td>
         <td><%= leave.to %></td>
         <td><%= leave.days %></td>

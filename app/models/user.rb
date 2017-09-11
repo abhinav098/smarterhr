@@ -3,16 +3,19 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   has_many :attendances
   has_many :leaves
 
-  has_many :managers, class_name:"Role",
-                   foreign_key: "employee_id",
-                   dependent:   :destroy
+  has_many :manager_roles, class_name:"Role",
+                           foreign_key: "employee_id",
+                           dependent:   :destroy
+  has_many :managers, through: :manager_roles
 
-	has_many :employees, class_name:"Role",
-                   foreign_key: "manager_id",
-                   dependent:   :destroy
+  has_many :employee_roles, class_name:"Role",
+                            foreign_key: "manager_id",
+                            dependent:   :destroy
+  has_many :employees, through: :employee_roles
 
   def manager?
   	employees.present?
@@ -21,6 +24,6 @@ class User < ApplicationRecord
     managers.present?
   end
   def full_name
-    "#{first_name}  #{last_name}"
+    "#{first_name} #{last_name}"
   end
 end
