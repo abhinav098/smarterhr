@@ -8,9 +8,7 @@ class LeavesController < ApplicationController
 	def index
 		@leaves = []
 		if current_user.manager?
-			current_user.employees.each do |e|
-				@leaves << e.employee.leaves.order(:created_at).to_a if e.employee.leaves.any?
-			end
+			@leaves <<  current_user.employees.map(&:leaves)
 		else
 			@leaves << current_user.leaves.order(:created_at).to_a if current_user.leaves.any?
 		end
@@ -25,7 +23,7 @@ class LeavesController < ApplicationController
 		else
 			render 'new'
 			 flash[:notice] = 'Leave dates incorrect.'
-		end	
+		end
 	end
 
 	def edit

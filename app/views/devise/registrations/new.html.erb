@@ -18,6 +18,11 @@
     </div>
 
     <div class="field">
+      <%= f.label :manager %>
+      <%= select("manager", 'manager_id', User.all.map { |u| [u.email, u.id]}, {prompt: 'Select a Manager'}) %>
+    </div>
+
+    <div class="field">
       <%= f.label :password %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
