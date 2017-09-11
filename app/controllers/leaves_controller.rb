@@ -1,30 +1,37 @@
 class LeavesController < ApplicationController
-	before_action :authenticate_user! 
+	before_action :authenticate_user!
 	before_action :find_leave, only: [:show, :update , :destroy]
 
 	def new
 		@leave = Leave.new
 	end
-
 	def index
-		@leaves = current_user.leaves.order(:created_at)
+		@leaves = []
+		if current_user.manager?
+			current_user.employees.each do |e|
+				@leaves << e.employee.leaves.order(:created_at).to_a if e.employee.leaves.any?
+			end
+		else
+			@leaves << current_user.leaves.order(:created_at).to_a if current_user.leaves.any?
+		end
+		@leaves = @leaves.flatten
 	end
 
 	def create
 		@leave = current_user.leaves.new(leave_params)
 		if @leave.correct_leave
 			@leave.save
-			redirect_to @leave , notice: 'Leave has been successfully requested.'
+			redirect_to :leaves , notice: 'Leave has been successfully requested.'
 		else
 			render 'new'
 			 flash[:notice] = 'Leave dates incorrect.'
-		end
+		end	
 	end
 
 	def edit
 		@leave = Leave.find(params[:id])
 	end
-	
+
 	def update
 		if action? :approve
 			@leave.approved!
@@ -40,10 +47,10 @@ class LeavesController < ApplicationController
 
 	def destroy
 		@leave.destroy
-		redirect_to @leave, notice: 'Leave was successfully cancelled.'
+		redirect_to :leaves, notice: 'Leave was successfully cancelled.'
 	end
 
-	private 
+	private
 
 	def action?(act)
     params['commit'].casecmp(act.to_s.downcase).zero?

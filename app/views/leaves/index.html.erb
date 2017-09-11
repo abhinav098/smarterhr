@@ -10,7 +10,7 @@
   <% leaves.each  do |leave| %>
     <div>
 	    <% if leave.state == 'approved'  %>
-	       <b>On Leave</b> (<%= leave.user.email %>)
+	       <b>On Leave</b> (<%= leave.user.full_name %>)
 	    <% end %>
     </div>
  <% end %>
