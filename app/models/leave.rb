@@ -2,7 +2,7 @@ class Leave < ApplicationRecord
   belongs_to :user
 
   enum state: [:approved, :rejected, :open, :revoked]
-  
+
   validates :message, presence:true
   validates :to_date, presence:true
   validates :from_date, presence:true
@@ -14,9 +14,9 @@ class Leave < ApplicationRecord
   def end_time
     self.to
   end
-  
+
   def correct_leave
-    DateTime.parse(to).mjd > DateTime.parse(from).mjd
+    DateTime.parse(to).mjd >= DateTime.parse(from).mjd
   end
 
   def from

@@ -34,12 +34,15 @@ class LeavesController < ApplicationController
 	def update
 		if action? :approve
 			@leave.approved!
+			flash[:alert] = 'Leave request Approved!'
 			redirect_to :leaves
 		elsif action? :reject
 			@leave.rejected!
+			flash[:alert] = 'Leave request Rejected!'
 			redirect_to :leaves
 		else
 			@leave.update(leave_params)
+			flash[:alert] = 'Leave successfully edited !'
 			redirect_to :leaves
 		end
 	end

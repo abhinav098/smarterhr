@@ -1,0 +1,9 @@
+<div class = "panel">
+	<h1> Request For an Equipment </h1>
+	<%= form_for @equipment do |f| %>
+	  <%= f.label :device %>
+	  <%= f.text_field:name, class: 'form-control', placeholder: 'Ask for device' %>
+
+		<%= f.submit 'Request', class: "button success small" %>
+	<% end %>
+</div>

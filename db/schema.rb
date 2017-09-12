@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170911111108) do
+ActiveRecord::Schema.define(version: 20170912082513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20170911111108) do
     t.integer  "work"
     t.integer  "user_id"
     t.index ["user_id"], name: "index_attendances_on_user_id", using: :btree
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "state",      default: 0
+    t.integer  "issuer_id"
+    t.integer  "user_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["user_id"], name: "index_equipment_on_user_id", using: :btree
   end
 
   create_table "leaves", force: :cascade do |t|
@@ -64,5 +74,6 @@ ActiveRecord::Schema.define(version: 20170911111108) do
   end
 
   add_foreign_key "attendances", "users"
+  add_foreign_key "equipment", "users"
   add_foreign_key "leaves", "users"
 end

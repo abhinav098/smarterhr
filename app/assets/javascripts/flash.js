@@ -1,3 +1,3 @@
 setTimeout(function() {
     $('.alert-box').fadeOut('slow');
-}, 1000);
+}, 1000*2);

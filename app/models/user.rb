@@ -17,12 +17,16 @@ class User < ApplicationRecord
                             dependent:   :destroy
   has_many :employees, through: :employee_roles
 
+  has_many :equipment
+
   def manager?
   	employees.present?
   end
+
   def employee?
     managers.present?
   end
+
   def full_name
     "#{first_name} #{last_name}"
   end

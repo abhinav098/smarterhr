@@ -24,9 +24,12 @@
         <% if current_user.manager? %>
           <td>
             <%= form_for leave do |f|%>
-              <% if leave.open? || leave.rejected? %>
+              <% if leave.approved? %>
+                <%= f.submit "Reject" , class: "button tiny alert round" %>
+              <% elsif leave.rejected?%>
                 <%= f.submit "Approve", class: "button tiny success round" %>
               <% else %>
+                <%= f.submit "Approve", class: "button tiny success round" %>
                 <%= f.submit "Reject" , class: "button tiny alert round" %>
               <% end %>
             <% end %>

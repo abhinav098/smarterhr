@@ -1,7 +1,11 @@
 <% provide(:title, "Leaves") %>
 <div class="panel" align="center">
-	<h1> Leaves </h1>
-	<%= link_to "Apply", new_leave_path, class: "button round tiny" %>
+	<h1> LEAVES </h1>
+	<br>
+
+	<% if  current_user.employee? %>
+		<%= link_to "Apply", new_leave_path, class: "button round tiny" %>
+	<% end %>
 
 <%= render 'leave' %>
 <%= month_calendar events: @leaves do |date, leaves| %>
