@@ -15,11 +15,12 @@
 //= require foundation
 //= require turbolinks
 //= require_tree .
-//= require moment 
+//= require moment
 //= require fullcalendar
 //= require jquery-ui
 //= require jquery-ui/widgets/datepicker
 //= require jquery-ui/effect.all
+//= require flash
 
 $('#calendar').fullCalendar({});
 $(function(){ $(document).foundation(); });

@@ -1,0 +1,6 @@
+<% flash.each do |key, value| %>
+  <div class="<%= foundation_flash_class(key) %> alert-box">
+    <%= value %>
+    <a class="close" href="#">&times;</a>
+  </div>
+<% end %>
