@@ -17,6 +17,9 @@ class User < ApplicationRecord
                             dependent:   :destroy
   has_many :employees, through: :employee_roles
 
+  has_many :issuances
+  has_many :equipments, through: :issuances
+
   def manager?
   	employees.present?
   end
