@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :roles,  only: [:create, :destroy]
+  # resources :roles,  only: [:create, :destroy]
 
  	root 'attendances#index'
 end
