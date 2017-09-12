@@ -6,7 +6,7 @@ class Equipment < ApplicationRecord
   enum state: [:open, :approved, :rejected, :revoked]
 
   def issued?
-    state.approved?
+    approved?
   end
 
   def issued_on
