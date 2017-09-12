@@ -19,10 +19,11 @@ class LeavesController < ApplicationController
 		@leave = current_user.leaves.new(leave_params)
 		if @leave.correct_leave
 			@leave.save
-			redirect_to :leaves , notice: 'Leave has been successfully requested.'
+			flash[:success] = 'Leave has been successfully requested.'
+			redirect_to :leaves
 		else
+			flash[:error] = 'Leave dates incorrect.'
 			render 'new'
-			 flash[:notice] = 'Leave dates incorrect.'
 		end
 	end
 
@@ -33,12 +34,15 @@ class LeavesController < ApplicationController
 	def update
 		if action? :approve
 			@leave.approved!
+			flash[:alert] = 'Leave request Approved!'
 			redirect_to :leaves
 		elsif action? :reject
 			@leave.rejected!
+			flash[:alert] = 'Leave request Rejected!'
 			redirect_to :leaves
 		else
 			@leave.update(leave_params)
+			flash[:alert] = 'Leave successfully edited !'
 			redirect_to :leaves
 		end
 	end

@@ -1,0 +1,9 @@
+<% provide(:title, "Equipment") %>
+<div class="panel" align="center">
+	<h1> EQUIPMENT </h1>
+	<br>
+	<% if  current_user.employee? %>
+		<%= link_to "Request", new_equipment_path, class: "button round tiny" %>
+	<% end %>
+	<%= render 'equipment' %>
+</div>
