@@ -7,13 +7,11 @@ class EquipmentController < ApplicationController
   end
 
   def index
-    @equipments = []
-    if current_user.manager?
-      @equipments <<  current_user.employees.map(&:equipment)
-    else
-      @equipments << current_user.equipment.order(:created_at).to_a if current_user.equipment.any?
-    end
-    @equipments = @equipments.flatten
+    @equipments = if params[:employee]
+                current_user.employees.map(&:equipment).flatten
+              else
+                current_user.equipment
+              end
   end
 
   def create
@@ -36,11 +34,11 @@ class EquipmentController < ApplicationController
     if action? :approve
       @equipment.approved!
       flash[:success] = 'Equipment request Approved!'
-      redirect_to equipment_index_path
+      redirect_to :back
     elsif action? :reject
       @equipment.rejected!
       flash[:alert] = 'Equipment request Rejected!'
-      redirect_to equipment_index_path
+      redirect_to :back
     else
       @equipment.update(equipment_params)
       redirect_to equipment_index_path

@@ -22,7 +22,7 @@
         <td><%= equipment.user.managers.first.full_name %></td>
         <td><%= equipment.requested_on %></td>
         <td><%= equipment.state.capitalize %></td>
-        <% if current_user.manager? %>
+        <% if (equipment.user != current_user) && current_user.manager? %>
           <td>
             <%= form_for equipment do |f|%>
               <% if equipment.approved? %>

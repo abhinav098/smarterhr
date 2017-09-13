@@ -26,19 +26,16 @@
           <a href="#"> Leaves </a>
           <ul class="dropdown">
             <li><%= link_to "My leaves", leaves_path %></li>
-            <% if current_user.manager?%>
-              <li><%= link_to "Leave requests", leaves_path(employee: true)%></li>
-            <% end %>
-              <li><a href="/leaves/new">Apply For Leave</a></li>
+            <li><%= link_to "Leave requests", leaves_path(employee: true) if current_user.manager?%></li>
+            <li><a href="/leaves/new">Apply For Leave</a></li>
           </ul>
         </li>
         <li class="has-dropdown equipment">
           <a href="#"> Equipment </a>
           <ul class="dropdown">
-            <li><a href="/equipment">View Equipment Requests</a></li>
-          <% if current_user.employee? %>
-            <li><a href="/equipment/new">Request for Equipment</a></li>
-          <% end %>
+            <li><%= link_to "My Equipment Requests", equipment_index_path if current_user.managers.any? %></li>
+            <li><%= link_to "Equipment requests", equipment_index_path(employee: true) if current_user.manager?%></li>
+            <li><%= link_to "Request for Equipment", new_equipment_path if current_user.managers.any? %></li>
           </ul>
         </li>
       </ul>
