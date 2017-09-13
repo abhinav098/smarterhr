@@ -1,0 +1,8 @@
+<div class = "panel">
+	<h1> Request for Access </h1>
+	<%= form_for @access do |f| %>
+	  <%= f.label :access %>
+	  <%= f.select :kind, Access.kinds.keys.map { |k| [k.humanize, k] }%>
+		<%= f.submit 'Request', class: "button success small" %>
+	<% end %>
+</div>

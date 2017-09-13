@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :accesses
   resources :equipment
   resources :attendances
   resources :leaves
