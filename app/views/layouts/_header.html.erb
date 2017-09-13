@@ -25,7 +25,10 @@
         <li class="has-dropdown leaves">
           <a href="#"> Leaves </a>
           <ul class="dropdown">
-            <li><a href="/leaves">View Leaves Requests</a></li>
+            <li><%= link_to "My leaves", leaves_path %></li>
+            <% if current_user.manager?%>
+              <li><%= link_to "Leave requests", leaves_path(employee: true)%></li>
+            <% end %>
             <% if current_user.employee? %>
               <li><a href="/leaves/new">Apply For Leave</a></li>
             <% end %>
