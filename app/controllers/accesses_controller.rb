@@ -10,7 +10,7 @@ class AccessesController < ApplicationController
   end
 
   def index
-    @accesses = if params[:employee]
+    @accesses = if params[:manager]
                 current_user.employees.map(&:accesses).flatten
               else
                 current_user.accesses

@@ -7,7 +7,7 @@ class EquipmentController < ApplicationController
   end
 
   def index
-    @equipments = if params[:employee]
+    @equipments = if params[:manager]
                 current_user.employees.map(&:equipment).flatten
               else
                 current_user.equipment

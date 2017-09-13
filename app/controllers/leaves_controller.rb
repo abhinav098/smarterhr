@@ -6,7 +6,7 @@ class LeavesController < ApplicationController
 		@leave = Leave.new
 	end
 	def index
-		@leaves = if params[:employee]
+		@leaves = if params[:manager]
 								current_user.employees.map(&:leaves).flatten
 							else
 			 					current_user.leaves
