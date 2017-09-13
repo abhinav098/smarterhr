@@ -37,6 +37,5 @@
  */
 
 
-@import 'foundation/foundation-global';
-@import 'foundation/components/grid';
+@include foundation-everything(true);
 @include top-bar-container;
