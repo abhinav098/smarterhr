@@ -6,13 +6,11 @@ class LeavesController < ApplicationController
 		@leave = Leave.new
 	end
 	def index
-		@leaves = []
-		if current_user.manager?
-			@leaves <<  current_user.employees.map(&:leaves)
-		else
-			@leaves << current_user.leaves.order(:created_at).to_a if current_user.leaves.any?
-		end
-		@leaves = @leaves.flatten
+		@leaves = if params[:employee]
+								current_user.employees.map(&:leaves).flatten
+							else
+			 					current_user.leaves
+							end
 	end
 
 	def create
@@ -35,11 +33,11 @@ class LeavesController < ApplicationController
 		if action? :approve
 			@leave.approved!
 			flash[:alert] = 'Leave request Approved!'
-			redirect_to :leaves
+			redirect_to :back
 		elsif action? :reject
 			@leave.rejected!
 			flash[:alert] = 'Leave request Rejected!'
-			redirect_to :leaves
+			redirect_to :back
 		else
 			@leave.update(leave_params)
 			flash[:alert] = 'Leave successfully edited !'
