@@ -22,7 +22,7 @@
         <td><%= leave.to %></td>
         <td><%= leave.days %></td>
         <td><%= leave.state.capitalize %></td>
-        <td><%= leave.user.managers.first.full_name %></td>
+        <td><%= leave.user.managers&.first&.full_name %></td>
         <% if (leave.user != current_user) && current_user.manager? %>
           <td>
             <%= form_for leave do |f|%>

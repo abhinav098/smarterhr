@@ -8,7 +8,7 @@
 	<% end %>
 
 <%= render 'leave' %>
-<%= month_calendar events: @leaves do |date, leaves| %>
+<%= month_calendar events: Leave.all do |date, leaves| %>
   <%= date %>
 
   <% leaves.each  do |leave| %>

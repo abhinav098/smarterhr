@@ -29,9 +29,7 @@
             <% if current_user.manager?%>
               <li><%= link_to "Leave requests", leaves_path(employee: true)%></li>
             <% end %>
-            <% if current_user.employee? %>
               <li><a href="/leaves/new">Apply For Leave</a></li>
-            <% end %>
           </ul>
         </li>
         <li class="has-dropdown equipment">
