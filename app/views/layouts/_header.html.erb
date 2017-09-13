@@ -1,7 +1,7 @@
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="/">PrepHR</a></h1>
+      <h1><a href="/">SmarterHR</a></h1>
     </li>
   </ul>
 
@@ -20,23 +20,27 @@
     </ul>
 
     <!-- Left Nav Section -->
-    <ul class="left">
-      <li class="has-dropdown leaves">
-        <a href="#"> Leaves </a>
-        <ul class="dropdown">
-          <li><a href="/leaves">View Leaves</a></li>
-          <li><a href="/leaves/new">Apply For Leave</a></li>
-        </ul>
-      </li>
-      <li class="has-dropdown equipment">
-        <a href="#"> Equipment </a>
-        <ul class="dropdown">
-          <li><a href="/equipment">View Equipment Requests</a></li>
-        <%# if current_user.employee? %>
-          <!-- <li><a href="/equipment/new">Request for Equipment</a></li> -->
-        <%# end %>
-        </ul>
-      </li>
-    </ul>
+    <% if user_signed_in? %>
+      <ul class="left">
+        <li class="has-dropdown leaves">
+          <a href="#"> Leaves </a>
+          <ul class="dropdown">
+            <li><a href="/leaves">View Leaves Requests</a></li>
+            <% if current_user.employee? %>
+              <li><a href="/leaves/new">Apply For Leave</a></li>
+            <% end %>
+          </ul>
+        </li>
+        <li class="has-dropdown equipment">
+          <a href="#"> Equipment </a>
+          <ul class="dropdown">
+            <li><a href="/equipment">View Equipment Requests</a></li>
+          <% if current_user.employee? %>
+            <li><a href="/equipment/new">Request for Equipment</a></li>
+          <% end %>
+          </ul>
+        </li>
+      </ul>
+    <% end %>
   </section>
 </nav>
