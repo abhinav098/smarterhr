@@ -18,11 +18,12 @@
       <%= f.label :email %>
       <%= f.email_field :email, autofocus: true %>
     </div>
-
-    <div class="field">
-      <%= f.label :manager %>
-      <%= select("manager", 'manager_id', User.all.map { |u| [u.email, u.id]}, {prompt: 'Select a Manager'}) %>
-    </div>
+    <% if current_user.employee? %>
+      <div class="field">
+        <%= f.label :manager %>
+        <%= select("manager", 'manager_id', User.all.map { |u| [u.email, u.id]}, {prompt: 'Select a Manager'}) %>
+      </div>
+    <% end %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
