@@ -3,11 +3,12 @@
 	<h1> LEAVES </h1>
 	<br>
 
-	<% if  current_user.employee? %>
-		<%= link_to "Apply", new_leave_path, class: "button round tiny" %>
-	<% end %>
-
-<%= render 'leave' %>
+<% if  current_user.employee? %>
+	<%= link_to "Apply", new_leave_path, class: "button round tiny" %>
+<% end %>
+<% if @leaves.any? %>
+	<%= render 'leave' %>
+<% end %>
 <%= month_calendar events: Leave.all do |date, leaves| %>
   <%= date %>
 

@@ -5,5 +5,7 @@
 	<% if  current_user.employee? %>
 		<%= link_to "Request", new_equipment_path, class: "button round tiny" %>
 	<% end %>
-	<%= render 'equipment' %>
+	<% if @equipments.any? %>
+		<%= render 'equipment' %>
+	<% end %>
 </div>
