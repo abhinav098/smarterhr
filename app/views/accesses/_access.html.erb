@@ -1,0 +1,42 @@
+<table align="center">
+  <thead>
+    <tr>
+      <th>Employee Name</th>
+      <th>Access type</th>
+      <th>Status</th>
+      <th>Manager's Name</th>
+      <% if current_user.manager? %>
+        <th>Manager actions</th>
+      <% else %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @accesses.each do |access| %>
+      <tr>
+        <td><%= access.user.full_name.capitalize %></td>
+        <td><%= access.kind.capitalize %></td>
+        <td><%= access.state.capitalize %></td>
+        <td><%= access.user.managers&.first&.full_name %></td>
+        <% if (access.user != current_user) && current_user.manager? %>
+          <td>
+            <%= form_for access do |f|%>
+              <% if access.approved? %>
+                <%= f.submit "Reject" , class: "button tiny alert round" %>
+              <% elsif access.rejected?%>
+                <%= f.submit "Approve", class: "button tiny success round" %>
+              <% else %>
+                <%= f.submit "Approve", class: "button tiny success round" %>
+                <%= f.submit "Reject" , class: "button tiny alert round" %>
+              <% end %>
+            <% end %>
+          </td>
+        <% else %>
+          <td><%= link_to "Edit", edit_access_path(access) , class: "button tiny round"%>
+           <%= link_to "Cancel", access_path(access), method: :delete, class: "button tiny alert round" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

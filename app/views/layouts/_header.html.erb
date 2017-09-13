@@ -30,6 +30,15 @@
             <li><a href="/leaves/new">Apply For Leave</a></li>
           </ul>
         </li>
+        <ul class="left">
+          <li class="has-dropdown accesses">
+            <a href="#"> Access </a>
+            <ul class="dropdown">
+              <li><%= link_to "My Access", accesses_path  if current_user.managers.any? %></li>
+              <li><%= link_to "Access requests", accesses_path(employee: true) if current_user.manager?%></li>
+              <li><%= link_to "Request for Access", new_access_path if current_user.managers.any? %></li>
+            </ul>
+          </li>
         <li class="has-dropdown equipment">
           <a href="#"> Equipment </a>
           <ul class="dropdown">

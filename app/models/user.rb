@@ -19,6 +19,8 @@ class User < ApplicationRecord
 
   has_many :equipment, dependent: :destroy
 
+  has_many :accesses, dependent: :destroy
+
   def manager?
   	employees.present?
   end
