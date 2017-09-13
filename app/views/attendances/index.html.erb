@@ -4,5 +4,5 @@
 	<%= render 'form' %>
 	<%= render 'attendance'%>
 	<%= link_to "Request Leave", new_leave_path, class: "button success tiny" %>
-	<%= link_to "Request Equipment", new_equipment_path, class: "button notice tiny" %>
+	<%= link_to "Request Equipment", new_equipment_path, class: "button notice tiny" if current_user.manager? %>
 </div>
