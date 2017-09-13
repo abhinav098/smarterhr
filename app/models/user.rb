@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :attendances
-  has_many :leaves
+  has_many :attendances, dependent: :destroy
+  has_many :leaves, dependent: :destroy
 
   has_many :manager_roles, class_name:"Role",
                            foreign_key: "employee_id",
@@ -17,7 +17,7 @@ class User < ApplicationRecord
                             dependent:   :destroy
   has_many :employees, through: :employee_roles
 
-  has_many :equipment
+  has_many :equipment, dependent: :destroy
 
   def manager?
   	employees.present?
