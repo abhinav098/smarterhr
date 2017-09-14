@@ -9,34 +9,31 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <%if user_signed_in? %>
-      <li class="has-dropdown leaves">
-        <a href="#"> Leaves </a>
+        <%if current_user.manager? %>
+          <li class="has-dropdown equipment">
+            <a href="#"> All Requests </a>
+            <ul class="dropdown">
+              <li><%= link_to "Leave requests", leaves_path(manager: true) if current_user.manager?%></li>
+              <li><%= link_to "Access requests", accesses_path(manager: true) if current_user.manager?%></li>
+              <li><%= link_to "Equipment Requests", equipment_index_path(manager: true) if current_user.manager?%></li>
+            </ul>
+          </li>
+        <% end %>
+      <li class="has-dropdown equipment">
+        <a href="#"> My Requests </a>
         <ul class="dropdown">
-          <li><%= link_to "My leave Requests", leaves_path if current_user.managers.any? %></li>
-          <li><%= link_to "Leave requests", leaves_path(manager: true) if current_user.manager?%></li>
+          <li><%= link_to "My Access Requests", accesses_path  if current_user.managers.any? %></li>
+          <li><%= link_to "My Equipment Requests", equipment_index_path if current_user.managers.any? %></li>
+          <li><%= link_to "My Leave Requests", leaves_path if current_user.managers.any? %></li>
         </ul>
       </li>
-        <li class="has-dropdown accesses">
-          <a href="#"> Access </a>
-          <ul class="dropdown">
-            <li><%= link_to "My Access Requests", accesses_path  if current_user.managers.any? %></li>
-            <li><%= link_to "Access requests", accesses_path(manager: true) if current_user.manager?%></li>
-          </ul>
-        </li>
-        <li class="has-dropdown equipment">
-          <a href="#"> Equipment </a>
-          <ul class="dropdown">
-            <li><%= link_to "My Equipment Requests", equipment_index_path if current_user.managers.any? %></li>
-            <li><%= link_to "Equipment Requests", equipment_index_path(manager: true) if current_user.manager?%></li>
-          </ul>
-        </li>
-         <li class="has-dropdown profile">
-          <a href="#"> <%= current_user.full_name.capitalize %> </a>
-          <ul class="dropdown">
-            <li> <%= link_to "Profile",edit_user_registration_path %></li>
-            <li> <%= link_to "SignOut",destroy_user_session_path, method: :delete%></li>
-          </ul>
-         </li>
+       <li class="has-dropdown profile">
+        <a href="#"> <%= current_user.full_name.capitalize %> </a>
+        <ul class="dropdown">
+          <li> <%= link_to "Profile",edit_user_registration_path %></li>
+          <li> <%= link_to "SignOut",destroy_user_session_path, method: :delete%></li>
+        </ul>
+       </li>
       <% end %>
     </ul>
     <!-- Left Nav Section -->
