@@ -9,8 +9,10 @@
 
 	  <%= f.label :message %>
 	  <%= f.text_field :message, class: 'form-control' ,placeholder: 'Enter Message' %>
-	  
+
+		<%= f.label :kind %>
+	  <%= f.select :kind, Leave.kinds.keys.map { |k| [k.humanize, k] }%>
+
 		<%= f.submit 'Apply', class: "button success small" %>
 	<% end %>
 </div>
-
