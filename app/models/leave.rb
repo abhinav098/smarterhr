@@ -2,7 +2,7 @@ class Leave < ApplicationRecord
   belongs_to :user
 
   enum state: [:approved, :rejected, :open, :revoked]
-  enum kind: [:sick, :annual, :restricted ]
+  enum kind: [:sick, :annual, :restricted, :unpaid ]
 
   validates :message, presence:true
   validates :to_date, presence:true

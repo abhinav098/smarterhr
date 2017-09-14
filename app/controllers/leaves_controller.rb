@@ -61,6 +61,6 @@ class LeavesController < ApplicationController
 	end
 
 	def leave_params
-		params.require(:leave).permit(:message, :from_date, :to_date, :status)
+		params.require(:leave).permit(:message, :from_date, :to_date, :status, :kind)
 	end
 end
