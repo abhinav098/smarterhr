@@ -9,7 +9,7 @@ class LeavesController < ApplicationController
 		@leaves = if params[:manager]
 								current_user.employees.map(&:leaves).flatten
 							else
-			 					current_user.leaves
+			 					current_user.leaves.order(created_at: :desc)
 							end
 	end
 

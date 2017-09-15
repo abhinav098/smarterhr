@@ -10,7 +10,7 @@ class EquipmentController < ApplicationController
     @equipments = if params[:manager]
                 current_user.employees.map(&:equipment).flatten
               else
-                current_user.equipment
+                current_user.equipment.order(created_at: :desc)
               end
   end
 

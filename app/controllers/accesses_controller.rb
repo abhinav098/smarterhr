@@ -13,7 +13,7 @@ class AccessesController < ApplicationController
     @accesses = if params[:manager]
                 current_user.employees.map(&:accesses).flatten
               else
-                current_user.accesses
+                current_user.accesses.order(created_at: :desc)
               end
   end
 
