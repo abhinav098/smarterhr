@@ -1,11 +1,10 @@
 class EquipmentController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_equipment, only: [:show, :update , :destroy]
+  # before_action :find_equipment, only: [:show, :edit, :update , :destroy]
 
   def new
     @equipment = Equipment.new
   end
-
   def index
     @equipments = if params[:manager]
                 current_user.employees.map(&:equipment).flatten
@@ -16,38 +15,34 @@ class EquipmentController < ApplicationController
 
   def create
     @equipment = current_user.equipment.new(equipment_params)
-    @equipment.issuer = current_user.managers.first
+    # @equipment.issuances.create(user_id: current_user.id, issuer_id: current_user.managers.first.id)
     if @equipment.save
-      flash[:success] = 'Equipment has been successfully requested.'
-      redirect_to equipment_index_path
+      flash[:success] = "Equipment successfully requested."
     else
       render 'new'
-      flash[:error] = 'Something Wrong !!'
+      flash[:success] = "Equipment request process had some errors"
     end
-  end
-
-  def edit
-    @equipment = Equipment.find(params[:id])
   end
 
   def update
     if action? :approve
       @equipment.approved!
-      flash[:success] = 'Equipment request Approved!'
-      redirect_to :back
+      flash[:alert] = 'equipment request Approved!'
+      redirect_to :equipment_index_path
     elsif action? :reject
       @equipment.rejected!
-      flash[:alert] = 'Equipment request Rejected!'
-      redirect_to :back
+      flash[:alert] = 'equipment request Rejected!'
+      redirect_to :equipment_index_path
     else
       @equipment.update(equipment_params)
-      redirect_to equipment_index_path
+      flash[:alert] = 'Equipment request successfully edited !'
+      redirect_to :equipment_index_path
     end
   end
 
   def destroy
     @equipment.destroy
-    redirect_to :back, notice: 'equipment was successfully cancelled.'
+    redirect_to :equipment_index_path, notice: 'Leave was successfully cancelled.'
   end
 
   private
@@ -61,6 +56,6 @@ class EquipmentController < ApplicationController
   end
 
   def equipment_params
-    params.require(:equipment).permit(:name)
+    params.require(:equipment).permit(:name, :description, :state, :kind)
   end
 end

@@ -1,0 +1,2 @@
+class IssuancesController < ApplicationController
+end

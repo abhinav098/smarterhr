@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :accesses
+  resources :issuances
   resources :equipment
+  resources :accesses
   resources :attendances
   resources :leaves
   devise_for :users, :controllers => { registrations: 'registrations' } do
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :roles,  only: [:create, :destroy]
+  get :search, controller: :application
 
  	root 'attendances#index'
 end

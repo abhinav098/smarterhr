@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  issuer: one
+  issuable: one
+  issuable_type: Issuable
+  user: one
+
+two:
+  issuer: two
+  issuable: two
+  issuable_type: Issuable
+  user: two

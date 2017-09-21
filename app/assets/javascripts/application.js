@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require_tree .
 //= require moment
+//= require jquery.easy-autocomplete
 //= require fullcalendar
 //= require jquery-ui
 //= require jquery-ui/widgets/datepicker

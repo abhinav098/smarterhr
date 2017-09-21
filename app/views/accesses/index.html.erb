@@ -1,12 +1,19 @@
-<% provide(:title, "Access") %>
+<% provide(:title, "Accesses") %>
 <div class="panel" align="center">
-	<h1> ACCESS </h1>
-	<br>
-
-<% if  current_user.employee? %>
-	<%= link_to "Request", new_access_path, class: "button round tiny" %>
-<% end %>
-<% if @accesses.any? %>
-	<%= render 'access' %>
-<% end %>
+  <%= form_with url: search_path  do |f| %>
+    <%= f.text_field :q, name:"search", placeholder:"Enter Access Name", behavior: "autocomplete" %>
+    <%= f.button "Search"%>
+  <% end %>
+  <table id="accesses">
+    <tr>
+      <th>Access Name</th>
+      <th>Access description</th>
+    </tr>
+    <% @accesses.each do |access| %>
+    <tr>
+      <td><%= link_to(access.name, access) %></td>
+      <td><%= access.description %></td>
+    </tr>
+    <% end %>
+  </table>
 </div>
