@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  before_filter :find_manager, only: :create
-  after_filter :associate_manager, only: :create
+  before_action :find_manager, only: :create
+  after_action :associate_manager, only: :create
 
  private
 
