@@ -1,10 +1,10 @@
 <% provide(:title, "Accesses") %>
 <div class="panel" align="center">
-  <%= form_with url: search_path  do |f| %>
+  <%= form_with url: searches_path, method: :post  do |f| %>
     <%= f.text_field :q, name:"search", placeholder:"Enter Access Name", behavior: "autocomplete" %>
     <%= f.button "Search"%>
   <% end %>
-  <table id="accesses">
+  <!-- <table id="accesses">
     <tr>
       <th>Access Name</th>
       <th>Access description</th>
@@ -15,5 +15,5 @@
       <td><%= access.description %></td>
     </tr>
     <% end %>
-  </table>
+  </table> -->
 </div>

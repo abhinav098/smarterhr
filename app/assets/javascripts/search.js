@@ -4,17 +4,17 @@ document.addEventListener("turbolinks:load", function(){
   var options = {
     getValue: "name",
     url:function(phrase){
-      return "/search.json?q=" + phrase;
+      return "/searches.json?q=" + phrase;
     },
     categories:[
       {
         listLocation:"accesses",
         header: "<b>Accesses</b>",
-      },
-      {
-        listLocation:"equipment",
-        header: "<b>Equipment</b>",
       }
+      // {
+      //   listLocation:"equipment",
+      //   header: "<b>Equipment</b>",
+      // }
     ],
     list:{
       onChooseEvent: function() {

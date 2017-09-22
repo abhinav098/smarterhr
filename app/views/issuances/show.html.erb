@@ -1,0 +1,53 @@
+<div class="panel" align = "center">
+
+  <h1>Issuances</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Employee Name</th>
+        <th>Request for</th>
+        <th>Access Name</th>
+        <th>Access For</th>
+        <th>Requested On</th>
+        <th>Responded On</th>
+        <th>Manager's Name</th>
+        <th>Status</th>
+        <%# if (@issuance.user != current_user) && current_user.manager? %>
+          <!-- <th>Manager Actions</th> -->
+        <%# else %>
+        <!-- <th>Employee Actions</th> -->
+        <%# end %>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @issuance.user.full_name.capitalize %></td>
+        <td><%= @issuance.issuable_type %></td>
+        <td><%= @issuance.user.accesses.first.name %></td>
+        <td><%= @issuance.user.accesses.first.description %></td>
+        <td><%= @issuance.created_at.strftime("%D") %></td>
+        <td><%= @issuance.updated_at.strftime("%D") %></td>
+        <td><%= @issuance&.issuer&.full_name %></td>
+        <td><%= @issuance.state %></td>
+        <!-- <%# if (@issuance.user != current_user) && current_user.manager? %>
+          <td>
+            <%#= form_for @issuance do |f|%>
+              <%## if @issuance.approved? %>
+              <%#= f.submit "Reject" , class: "button tiny alert round" %>
+              <%## elsif @isssuance.rejected?%>
+              <%#= f.submit "Approve", class: "button tiny success round" %>
+              <%## else %>
+              <%##= f.submit "Approve", class: "button tiny success round" %>
+              <%##= f.submit "Reject" , class: "button tiny alert round" %>
+              <%## end %>
+            <%# end %>
+          </td>
+        <%# else %>
+        <td>
+          <%#= link_to "Edit", edit_access_issuance_path(@issuance) , class: "button tiny round"%>
+          <%#= link_to "Revoke", issuance_path(@issuance), method: :delete, class: "button tiny alert round" %></td>
+        <%# end %>
+        </tr> -->
+      </tbody>
+    </table>
+</div>
