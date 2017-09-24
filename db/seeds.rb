@@ -16,5 +16,3 @@ access = Access.create(name:'sales', description: "managin users and sales",kind
 access = Access.create(name:'tester', description: "testing accesses",kind:0)
 access = Access.create(name:'developer', description: "development, deployment accesses",kind:3)
 access = Access.create(name:'admin', description: "Admin access , manager of all ",kind:1)
-
-issuance = Issuance
