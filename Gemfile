@@ -21,6 +21,8 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'fullcalendar-rails'
 
+gem 'dalli'
+
 gem 'momentjs-rails'
 
 gem 'ransack'

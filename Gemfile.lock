@@ -51,6 +51,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    dalli (2.7.6)
     database_cleaner (1.6.1)
     devise (4.3.0)
       bcrypt (~> 3.0)
@@ -209,6 +210,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  dalli
   database_cleaner
   devise
   factory_girl_rails

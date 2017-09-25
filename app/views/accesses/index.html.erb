@@ -2,6 +2,7 @@
 <div class="panel" align="center">
   <%= form_with url: searches_path, method: :post  do |f| %>
     <%= f.text_field :q, name:"search", placeholder:"Enter Access Name", behavior: "autocomplete" %>
+    <%= f.text_field :description, name:"description", placeholder:"Enter Url"%>
     <%= f.button "Search"%>
   <% end %>
   <!-- <table id="accesses">
