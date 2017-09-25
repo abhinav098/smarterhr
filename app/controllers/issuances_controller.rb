@@ -11,7 +11,7 @@ class IssuancesController < ApplicationController
     @issuances = current_user.issuances
   end
   def create
-    @issuance = current_user.issuances.build(issuable: @issuable)
+    @issuance = current_user.issuances.build(issuable: @issuable, description: params[:issuance][:description])
     if @issuance.save
       redirect_to equipment_issuance_path(@issuable.id, @issuance)
     else

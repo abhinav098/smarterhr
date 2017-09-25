@@ -4,6 +4,7 @@ class CreateIssuances < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.references :issuable, polymorphic: true
       t.integer :state, default:0
+      t.string :description
       t.references :issuer
 
       t.timestamps
