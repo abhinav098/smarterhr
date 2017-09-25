@@ -1,0 +1,24 @@
+<div class="panel" align = "center">
+  <h1>Accesses</h1>
+  <table>
+    <thead>
+        <tr>
+          <th>Access Name</th>
+          <th>Access For</th>
+          <th>URL</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @accesses.each do |access| %>
+          <% cache access do %>
+            <tr>
+              <td><%= access.name %></td>
+              <td><%= access.kind %></td>
+              <td><%= access.url %></td>
+              <td><%= access.description %></td>
+            <% end %>
+        <% end %>
+    </tbody>
+  </table>
+</div>

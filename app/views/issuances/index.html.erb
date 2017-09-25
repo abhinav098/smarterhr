@@ -1,0 +1,23 @@
+<% provide(:title, "Leaves") %>
+<div class="panel" align="center">
+  <% if @leaves.any? %>
+    <h3> Leave Requests </h3>
+    <br>
+    <%= render 'leaves/leave' %>
+    <hr>
+  <% end %>
+
+  <% if @issuances.map(&:issuable_type).include?('Equipment') %>
+    <h3> Equipment Requests </h3>
+    <br>
+    <%= render 'issuances/issuance_equipment' %>
+    <hr>
+  <% end %>
+
+  <% if @issuances.map(&:issuable_type).include?('Access') %>
+    <h3> Access Requests </h3>
+    <br>
+  	<%= render 'issuances/issuance_access' %>
+  <% end %>
+  
+</div>

@@ -1,0 +1,15 @@
+<div class = "panel">
+	<h3> Request for an Equipment </h3>
+	<%= form_for @equipment do |f| %>
+	  <%= f.label :name %>
+	  <%= select("equipment","id", Equipment.all.map{ |e| [e.name, e.id]}, {prompt: 'Select Equipment Name'}) %>
+
+	  <%= f.label :description %>
+    <%= f.text_field :description,  class: 'form-control', placeholder: 'Enter Description', cached: true %>
+
+    <%= f.label :Select_Equipment_type %>
+    <%= f.select :kind, Equipment.kinds.keys.map { |k| [k.humanize, k] }%>
+
+		<%= f.submit 'Submit', class: "button success small" %>
+	<% end %>
+</div>

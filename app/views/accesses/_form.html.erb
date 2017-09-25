@@ -1,0 +1,18 @@
+<div class = "panel">
+	<h3> Request For an access </h3>
+	<%= form_for @access do |f| %>
+	  <%= f.label :name %>
+	  <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Name', cached: true %>
+
+	  <%= f.label :url %>
+    <%= f.text_field :url,  class: 'form-control', placeholder: 'Enter Url', cached: true %>
+
+	  <%= f.label :description %>
+	  <%= f.text_field :description, class: 'form-control' ,placeholder: 'Enter description', cached: true %>
+
+    <%= f.label :Select_access_type %>
+    <%= f.select :kind, Access.kinds.keys.map { |k| [k.humanize, k] }%>
+
+		<%= f.submit 'Submit', class: "button success small" %>
+	<% end %>
+</div>

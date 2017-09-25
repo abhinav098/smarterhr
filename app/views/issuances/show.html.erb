@@ -1,0 +1,40 @@
+<% provide(:title,"Issuances")%>
+<div class="panel" align = "center">
+  <h1>Issuance Request</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Employee Name</th>
+        <th>Request for</th>
+        <% if @issuance.issuable_type == 'Access' %>
+          <th>Access Name</th>
+          <th>Access URL</th>
+          <th>Access Type</th>
+        <% else %>
+          <th>Equipment Name</th>
+          <th>Required for</th>
+          <th>Type</th>
+        <% end %>
+        <th>Requested On</th>
+        <th>Manager's Name</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @issuance.user.full_name.capitalize %></td>
+        <td><%= @issuance.issuable_type %></td>
+        <% if @issuance.issuable_type == 'Access' %>
+          <td><%= @access.name.capitalize %></td>
+          <td><%= @access.url %></td>
+          <td><%= @access.kind.capitalize %></td>
+        <% else %>
+          <td><%= @equipment.name %></td>
+          <td><%= @equipment.kind %></td>
+        <% end %>
+        <td><%= @issuance.created_at.strftime("%D") %></td>
+        <td><%= @issuance&.issuer&.full_name %></td>
+        <td><%= @issuance.state %></td>
+      </tbody>
+    </table>
+</div>

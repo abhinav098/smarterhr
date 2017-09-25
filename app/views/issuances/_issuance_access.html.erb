@@ -1,0 +1,31 @@
+<% provide(:title,"All Requests")%>
+<table>
+  <thead>
+    <tr>
+      <th>Employee Name</th>
+      <th>Request for</th>
+      <th>Access Name</th>
+      <th>Access URL</th>
+      <th>Access Type</th>
+      <th>Requested On</th>
+      <th>Manager's Name</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @issuances.each do |issuance|%>
+      <tr>
+      <% if issuance.issuable_type == 'Access'%>
+        <td><%= issuance.user.full_name.capitalize %></td>
+        <td><%= issuance.issuable_type %></td>
+        <td><%= issuance.issuable.name.capitalize %></td>
+        <td><%= issuance.issuable.url %></td>
+        <td><%= issuance.issuable.kind.capitalize %></td>
+        <td><%= issuance.created_at.strftime("%D") %></td>
+        <td><%= issuance&.issuer&.full_name %></td>
+        <td><%= issuance.state %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

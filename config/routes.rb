@@ -19,5 +19,7 @@ Rails.application.routes.draw do
       get :managers, :employees
     end
   end
+
+  resources :products, only: [:index]
   # resources :roles,  only: [:create, :destroy]
 end
