@@ -19,6 +19,7 @@ class SearchesController < ApplicationController
 
   def create
     if params[:search]
+      # debugger
       @access = Access.create(name: params[:search])
       @issuance = @access.issuances.create(user_id:current_user.id)
       redirect_to @issuance

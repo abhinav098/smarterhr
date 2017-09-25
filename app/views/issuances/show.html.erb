@@ -1,6 +1,6 @@
 <div class="panel" align = "center">
 
-  <h1>Issuances</h1>
+  <h1>Issuance Request</h1>
   <table>
     <thead>
       <tr>
@@ -24,7 +24,6 @@
         <td><%= @issuance.user.full_name.capitalize %></td>
         <td><%= @issuance.issuable_type %></td>
         <td><%= @issuance.user.accesses.first.name %></td>
-        <td><%= @issuance.user.accesses.first.description %></td>
         <td><%= @issuance.created_at.strftime("%D") %></td>
         <td><%= @issuance.updated_at.strftime("%D") %></td>
         <td><%= @issuance&.issuer&.full_name %></td>
