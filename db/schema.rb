@@ -10,19 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170914100114) do
+ActiveRecord::Schema.define(version: 20170925064113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accesses", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "issuer_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "url"
     t.integer  "kind"
-    t.integer  "state",      default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["user_id"], name: "index_accesses_on_user_id", using: :btree
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "attendances", force: :cascade do |t|
@@ -35,12 +34,23 @@ ActiveRecord::Schema.define(version: 20170914100114) do
 
   create_table "equipment", force: :cascade do |t|
     t.string   "name"
-    t.integer  "state",      default: 0
-    t.integer  "issuer_id"
+    t.string   "description"
+    t.integer  "kind"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "issuances", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["user_id"], name: "index_equipment_on_user_id", using: :btree
+    t.string   "issuable_type"
+    t.integer  "issuable_id"
+    t.integer  "state",         default: 0
+    t.integer  "issuer_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["issuable_type", "issuable_id"], name: "index_issuances_on_issuable_type_and_issuable_id", using: :btree
+    t.index ["issuer_id"], name: "index_issuances_on_issuer_id", using: :btree
+    t.index ["user_id"], name: "index_issuances_on_user_id", using: :btree
   end
 
   create_table "leaves", force: :cascade do |t|
@@ -84,8 +94,7 @@ ActiveRecord::Schema.define(version: 20170914100114) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "accesses", "users"
   add_foreign_key "attendances", "users"
-  add_foreign_key "equipment", "users"
+  add_foreign_key "issuances", "users"
   add_foreign_key "leaves", "users"
 end

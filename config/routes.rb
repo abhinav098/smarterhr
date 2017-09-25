@@ -1,15 +1,23 @@
 Rails.application.routes.draw do
-  resources :accesses
   resources :equipment
+  resources :issuances
+  resources :accesses
   resources :attendances
   resources :leaves
+  root 'attendances#index'
+
+  resources :equipment do
+    resources :issuances
+  end
+
+  resources :accesses do
+    resources :issuances
+  end
+
   devise_for :users, :controllers => { registrations: 'registrations' } do
     member do
       get :managers, :employees
     end
   end
-
   # resources :roles,  only: [:create, :destroy]
-
- 	root 'attendances#index'
 end

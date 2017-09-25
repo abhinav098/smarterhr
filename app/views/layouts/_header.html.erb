@@ -14,16 +14,16 @@
             <a href="#"> All Requests </a>
             <ul class="dropdown">
               <li><%= link_to "Leave requests", leaves_path(manager: true) if current_user.manager?%></li>
-              <li><%= link_to "Access requests", accesses_path(manager: true) if current_user.manager?%></li>
-              <li><%= link_to "Equipment Requests", equipment_index_path(manager: true) if current_user.manager?%></li>
+              <!-- <li><%= link_to "Access requests", accesses_path(manager: true) if current_user.manager?%></li> -->
+              <!-- <li><%= link_to "Equipment Requests", equipment_index_path(manager: true) if current_user.manager?%></li> -->
             </ul>
           </li>
         <% end %>
       <li class="has-dropdown equipment">
         <a href="#"> My Requests </a>
         <ul class="dropdown">
-          <li><%= link_to "My Access Requests", accesses_path  if current_user.managers.any? %></li>
-          <li><%= link_to "My Equipment Requests", equipment_index_path if current_user.managers.any? %></li>
+          <!-- <li><%#= link_to "My Access Requests", accesses_path  if current_user.managers.any? %></li> -->
+          <!-- <li><%#= link_to "My Equipment Requests", equipment_index_path if current_user.managers.any? %></li> -->
           <li><%= link_to "My Leave Requests", leaves_path if current_user.managers.any? %></li>
         </ul>
       </li>
@@ -43,9 +43,9 @@
           <li class="has-dropdown request">
             <a href="#"> Request </a>
             <ul class="dropdown">
-              <li><%= link_to "Access", new_access_path  %></li>
+              <!-- <li><%#= link_to "Access", new_access_path  %></li> -->
               <li><%= link_to "Leave", new_leave_path  %></li>
-              <li><%= link_to "Equipment", new_equipment_path  %></li>
+              <!-- <li><%#= link_to "Equipment", new_equipment_path  %></li> -->
             </ul>
           </li>
         </ul>

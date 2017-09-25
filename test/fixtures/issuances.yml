@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  issuable: one
+  issuable_type: Issuable
+  state: 1
+  issuer_id: 1
+
+two:
+  user: two
+  issuable: two
+  issuable_type: Issuable
+  state: 1
+  issuer_id: 1

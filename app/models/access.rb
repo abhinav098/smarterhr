@@ -1,9 +1,5 @@
 class Access < ApplicationRecord
-  belongs_to :user
-
-  belongs_to :issuer, class_name: "User"
-
-  enum state: [:open, :approved, :rejected, :revoked]
-
-  enum kind: [:admin, :tester, :developer, :sales]
+  has_many :issuances, as: :issuable
+  has_many :users, through: :issuances, source: :user
+  enum kind: [:tester, :admin, :sales, :developer, :manager]
 end

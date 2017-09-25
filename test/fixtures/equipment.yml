@@ -2,12 +2,10 @@
 
 one:
   name: MyString
-  state: 1
-  issuer_id: 1
-  user: one
+  description: MyString
+  kind: 1
 
 two:
   name: MyString
-  state: 1
-  issuer_id: 1
-  user: two
+  description: MyString
+  kind: 1
