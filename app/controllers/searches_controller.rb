@@ -19,10 +19,11 @@ class SearchesController < ApplicationController
 
   def create
     if params[:search]
-      redirect_to :back
+      @access = Access.create(name: params[:search])
+      @issuance = @access.issuances.create(user_id:current_user.id)
+      redirect_to @issuance
     else
       render :new
     end
   end
-
 end
