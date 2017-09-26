@@ -10,6 +10,11 @@
       <th>Requested On</th>
       <th>Manager's Name</th>
       <th>Status</th>
+      <% if (@issuances.first.user != current_user) && current_user.manager? %>
+        <th>Manager actions</th>
+      <% else %>
+        <th>Actions</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -24,6 +29,24 @@
           <td><%= issuance.created_at.strftime("%D") %></td>
           <td><%= issuance&.issuer&.full_name %></td>
           <td><%= issuance.state %></td>
+          <% if (issuance.user != current_user) && current_user.manager? %>
+            <td>
+              <%= form_for issuance do |f|%>
+                <% if issuance.approved? %>
+                  <%= f.submit "Reject" , class: "button tiny alert round" %>
+                <% elsif issuance.rejected?%>
+                  <%= f.submit "Approve", class: "button tiny success round" %>
+                <% else %>
+                  <%= f.submit "Approve", class: "button tiny success round" %>
+                  <%= f.submit "Reject" , class: "button tiny alert round" %>
+                <% end %>
+              <% end %>
+            </td>
+          <% else %>
+            <td><%= link_to "View", issuance_path(issuance) , class: "button tiny success round"%>
+              <%= link_to "Edit", edit_issuance_path(issuance), class: "button tiny notice round" %>
+             <%= link_to "Revoke", issuance_path(issuance), method: :delete, class: "button tiny alert round" %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>

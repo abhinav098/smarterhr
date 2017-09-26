@@ -3,4 +3,17 @@
 <div align="center">
 	<%= render 'form' %>
 	<%= render 'attendance'%>
+	<hr>
+  <h5> Calender </h5>
+  <%= month_calendar events: Leave.all do |date, leaves| %>
+    <%= date %>
+
+    <% leaves.each  do |leave| %>
+      <div>
+  	    <% if leave.state == 'approved'  %>
+  	       <b>On Leave</b> (<%= leave.user.first_name.capitalize %>)
+  	    <% end %>
+      </div>
+    <% end %>
+  <% end %>
 </div>

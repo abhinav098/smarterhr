@@ -1,7 +1,9 @@
 <% provide(:title, "Leaves") %>
 <div class="panel" align="center">
   <% if @leaves.any? %>
+    <hr>
     <h3> Leave Requests </h3>
+    <hr>
     <br>
     <%= render 'leaves/leave' %>
     <hr>
@@ -9,6 +11,7 @@
 
   <% if @issuances.map(&:issuable_type).include?('Equipment') %>
     <h3> Equipment Requests </h3>
+    <hr>
     <br>
     <%= render 'issuances/issuance_equipment' %>
     <hr>
@@ -16,8 +19,21 @@
 
   <% if @issuances.map(&:issuable_type).include?('Access') %>
     <h3> Access Requests </h3>
+    <hr>
     <br>
   	<%= render 'issuances/issuance_access' %>
   <% end %>
-  
+  <hr>
+  <h3> Leave Calender </h3>
+  <%= month_calendar events: Leave.all do |date, leaves| %>
+    <%= date %>
+
+    <% leaves.each  do |leave| %>
+      <div>
+  	    <% if leave.state == 'approved'  %>
+  	       <b>On Leave</b> (<%= leave.user.first_name.capitalize %>)
+  	    <% end %>
+      </div>
+    <% end %>
+  <% end %>
 </div>

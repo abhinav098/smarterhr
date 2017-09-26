@@ -11,16 +11,14 @@
       <%if user_signed_in? %>
         <%if current_user.manager? %>
           <li class="has-dropdown equipment">
-            <a href="#"> All Requests </a>
+            <a href="#">Requests </a>
             <ul class="dropdown">
-              <li><%= link_to "Leave requests", leaves_path(manager: true) if current_user.manager?%></li>
-              <li><%= link_to "Access requests", accesses_path(manager: true) if current_user.manager?%></li>
-              <li><%= link_to "Equipment Requests", issuances_path if current_user.manager?%></li>
+              <li><%= link_to  "My Requests", issuances_path %></li>
+              <li><%= link_to "Employee requests", issuances_path(manager: true) if current_user.manager?%></li>
             </ul>
           </li>
         <% end %>
         <li>
-        <%= link_to  "My Requests", issuances_path %>
       </li>
        <li class="has-dropdown profile">
         <a href="#"> <%= current_user.full_name.capitalize %> </a>
@@ -36,7 +34,7 @@
       <% if user_signed_in? %>
         <ul class="left">
           <li class="has-dropdown request">
-            <a href="#"> Request </a>
+            <a href="#"> New Request </a>
             <ul class="dropdown">
               <li><%= link_to "Access", new_access_path  %></li>
               <li><%= link_to "Leave", new_leave_path  %></li>

@@ -1,6 +1,6 @@
 class LeavesController < ApplicationController
 	before_action :authenticate_user!
-	before_action :find_leave, only: [:show, :update , :destroy]
+	before_action :find_leave, only: [:show, :update, :edit, :destroy]
 
 	def new
 		@leave = Leave.new
@@ -23,10 +23,6 @@ class LeavesController < ApplicationController
 			flash[:error] = 'Leave dates incorrect.'
 			render 'new'
 		end
-	end
-
-	def edit
-		@leave = Leave.find(params[:id])
 	end
 
 	def update
