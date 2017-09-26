@@ -20,12 +20,12 @@
   <tbody>
     <% @issuances.each do |issuance|%>
       <tr>
-        <% if issuance.issuable_type == 'Equipment'%>
+        <% if issuance && issuance.issuable_type == 'Equipment'%>
           <td><%= issuance.user.full_name.capitalize %></td>
           <td><%= issuance.issuable_type %></td>
           <td><%= issuance.issuable&.name&.capitalize %></td>
-          <td><%= issuance.issuable.description %></td>
-          <td><%= issuance.issuable.kind.capitalize %></td>
+          <td><%= issuance.issuable&.description %></td>
+          <td><%= issuance.issuable&.kind&.capitalize %></td>
           <td><%= issuance.created_at.strftime("%D") %></td>
           <td><%= issuance&.issuer&.full_name %></td>
           <td><%= issuance.state %></td>

@@ -54,6 +54,12 @@ class IssuancesController < ApplicationController
     flash[:alert] = 'Issuance successfully edited !'
 	end
 
+  def destroy
+    @issuance = Issuance.find(params[:id])
+    @issuance.destroy
+    redirect_to :back
+  end
+
   private
 
   def find_issuable

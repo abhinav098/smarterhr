@@ -31,7 +31,13 @@
       <% if user_signed_in? %>
         <ul class="left">
           <% if current_user&.super_manager? %>
-            <li><%= link_to "New Equipment", new_equipment_path %> </li>
+          <li class="has-dropdown request">
+            <a href="#"> Equipment </a>
+            <ul class="dropdown">
+              <li><%= link_to "All Equipment", equipment_index_path  %></li>
+              <li><%= link_to "New Equipment", new_equipment_path %> </li>
+            </ul>
+          </li>
           <% else %>
           <li class="has-dropdown request">
             <a href="#"> New Request </a>
