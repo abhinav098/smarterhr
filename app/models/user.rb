@@ -26,7 +26,7 @@ class User < ApplicationRecord
   end
 
   def super_manager?
-    managers.present?
+    managers.empty?
   end
 
   def employee?
