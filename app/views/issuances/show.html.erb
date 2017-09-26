@@ -12,7 +12,7 @@
           <th>Access Type</th>
         <% else %>
           <th>Equipment Name</th>
-          <th>Required for</th>
+          <th>Equipment Requested for</th>
           <th>Type</th>
         <% end %>
         <th>Requested On</th>
@@ -30,6 +30,7 @@
           <td><%= @access.kind.capitalize %></td>
         <% else %>
           <td><%= @equipment.name %></td>
+          <td><%= @equipment.description %></td>
           <td><%= @equipment.kind %></td>
         <% end %>
         <td><%= @issuance.created_at.strftime("%D") %></td>

@@ -15,7 +15,7 @@
             <ul class="dropdown">
               <li><%= link_to "Leave requests", leaves_path(manager: true) if current_user.manager?%></li>
               <li><%= link_to "Access requests", accesses_path(manager: true) if current_user.manager?%></li>
-              <li><%= link_to "Equipment Requests", issuances_path(manager: true) if current_user.manager?%></li>
+              <li><%= link_to "Equipment Requests", issuances_path if current_user.manager?%></li>
             </ul>
           </li>
         <% end %>

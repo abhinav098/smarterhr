@@ -15,7 +15,7 @@
   <tbody>
     <% @issuances.each do |issuance|%>
       <tr>
-        <% if issuance && issuance.issuable_type == 'Equipment'%>
+        <% if issuance.issuable_type == 'Equipment'%>
           <td><%= issuance.user.full_name.capitalize %></td>
           <td><%= issuance.issuable_type %></td>
           <td><%= issuance.issuable&.name&.capitalize %></td>
