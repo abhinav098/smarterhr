@@ -1,0 +1,9 @@
+<% provide(:title, "Leaves") %>
+<div class="panel" align="center">
+	<h1> Equipment </h1>
+	<br>
+
+	<% if @equipment.any? %>
+		<%= render 'equipment' %>
+	<% end %>
+</div>

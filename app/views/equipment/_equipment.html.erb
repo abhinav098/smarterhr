@@ -1,0 +1,22 @@
+<table>
+	<thead>
+	  <tr>
+	    <th> Name </th>
+	    <th> Description </th>
+	    <th> Type </th>
+    <th> Actions </th>
+	  </tr>
+	</thead>
+	<tbody>
+		<% @equipment.each do |equipment| %>
+			<tr>
+				<td><%= equipment.name.capitalize %></td>
+				<td><%= equipment.description.capitalize %></td>
+				<td><%= equipment.kind.capitalize %></td>
+				<td><%= link_to "Edit", edit_equipment_path(equipment) %> |
+	     			<%= link_to "Delete", equipment_path(equipment), method: :delete %></td>
+			</tr>
+		<% end %>
+
+	</tbody>
+</table>

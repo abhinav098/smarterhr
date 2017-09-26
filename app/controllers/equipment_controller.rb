@@ -3,7 +3,7 @@ class EquipmentController < ApplicationController
     before_action :find_equipment, only: [:show, :edit, :update, :destroy]
 
     def index
-      @accesses = Equipment.all
+      @equipment = Equipment.all
     end
 
     def new
@@ -22,7 +22,9 @@ class EquipmentController < ApplicationController
     end
 
     def edit
+      @equipment = Equipment.find(params[:id])
     end
+
     def update
       @equipment.update(equipment_params)
       if @equipment.save
@@ -33,9 +35,12 @@ class EquipmentController < ApplicationController
         render 'new'
       end
     end
+
     def destroy
       @equipment.destroy
-      redirect_to :back
+      redirect_to equipment_index_path
+      flash[:danger]= "Equipment Deleted"
+
     end
 
     private
