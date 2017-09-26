@@ -23,8 +23,10 @@ class IssuancesController < ApplicationController
     @issuance = current_user.issuances.build(issuable: @issuable, description: params[:issuance][:description])
     if @issuance.save
       redirect_to equipment_issuance_path(@issuable.id, @issuance)
+      flash[:success] = "Request created successfully"
     else
       redirect_to :back
+      flash[:alert] = "Request not Created"
     end
   end
 
@@ -47,14 +49,17 @@ class IssuancesController < ApplicationController
 		else
 			@issuance.update(leave_params)
 			flash[:alert] = 'Issuance successfully edited !'
-			redirect_to :back
+      redirect_to :back
 		end
+    flash[:alert] = 'Issuance successfully edited !'
 	end
 
   private
 
   def find_issuable
-    @issuable = Equipment.find(params[:equipment][:id]) if params[:equipment] && params[:equipment][:id]
+    unless params[:equipment][:id].empty?
+      @issuable = Equipment.find(params[:equipment][:id]) if params[:equipment] && params[:equipment][:id]
+    end
     @issuable = Access.find(params[:access][:id]) if params[:access] && params[:access][:id]
   end
 
