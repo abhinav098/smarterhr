@@ -1,0 +1,23 @@
+<% provide(:title, "Equipment") %>
+<div align="center">
+	<h3> Equipment </h3>
+	<table>
+		<thead>
+		  <tr>
+		    <th> Name </th>
+		    <th> Description </th>
+		    <th> Type </th>
+        <th> Actions </th>
+		  </tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= @equipment.name.capitalize %></td>
+				<td><%= @equipment.description.capitalize %></td>
+				<td><%= @equipment.kind.capitalize %></td>
+				<td><%= link_to "Edit", edit_equipment_path(@equipment) %> |
+         <%= link_to "Delete", equipment_path(@equipment), method: :delete %></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

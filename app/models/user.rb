@@ -25,6 +25,10 @@ class User < ApplicationRecord
   	employees.present?
   end
 
+  def super_manager?
+    managers.present?
+  end
+
   def employee?
     managers.present?
   end

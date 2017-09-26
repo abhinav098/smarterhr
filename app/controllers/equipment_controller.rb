@@ -1,6 +1,6 @@
 class EquipmentController < ApplicationController
     before_action :authenticate_user!
-    before_action :find_access, only: [:show, :edit, :update, :destroy]
+    before_action :find_equipment, only: [:show, :edit, :update, :destroy]
 
     def index
       @accesses = Equipment.all
@@ -11,11 +11,10 @@ class EquipmentController < ApplicationController
     end
 
     def create
-      @equipment = Equipment.find(params[:equipment][:id])
+      @equipment = Equipment.create(equipment_params)
       if @equipment.save
-        @issuance = @equipment.issuances.create(user_id: current_user.id)
         flash[:success]= "Equipment Created Successfully"
-        redirect_to equipment_issuance_path(@equipment, @issuance)
+        redirect_to @equipment
       else
         flash[:danger]= "Equipment not created, contains errors"
         render 'new'
@@ -27,11 +26,10 @@ class EquipmentController < ApplicationController
     def update
       @equipment.update(equipment_params)
       if @equipment.save
-        @issuance = @equipment.issuances.create(user_id: current_user.id)
-        flash[:success]= "Equipment Created Successfully"
-        redirect_to @issuance
+        flash[:success]= "Equipment updated Successfully"
+        redirect_to @equipment
       else
-        flash[:danger]= @equipment.errors.messages
+        flash[:danger]= "Equipment not updated"
         render 'new'
       end
     end
@@ -43,7 +41,7 @@ class EquipmentController < ApplicationController
     private
 
     def find_equipment
-      @equipment = Equipment.cached_find(params[:id])
+      @equipment = Equipment.find(params[:id])
     end
 
     def equipment_params

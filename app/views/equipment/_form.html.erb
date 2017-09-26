@@ -1,8 +1,8 @@
 <div class = "panel">
-	<h3> Request for an Equipment </h3>
+	<h3> Add an Equipment </h3>
 	<%= form_for @equipment do |f| %>
 	  <%= f.label :name %>
-	  <%= select("equipment","id", Equipment.all.map{ |e| [e.name, e.id]}, {prompt: 'Select Equipment Name'}) %>
+	  <%= f.text_field :name,  class: 'form-control', placeholder: 'Enter Name', cached: true  %>
 
 	  <%= f.label :description %>
     <%= f.text_field :description,  class: 'form-control', placeholder: 'Enter Description', cached: true %>

@@ -13,7 +13,7 @@
           <li class="has-dropdown equipment">
             <a href="#">Requests </a>
             <ul class="dropdown">
-              <li><%= link_to  "My Requests", issuances_path %></li>
+              <li><%= link_to  "My Requests", issuances_path if current_user.managers.any? %></li>
               <li><%= link_to "Employee requests", issuances_path(manager: true) if current_user.manager?%></li>
             </ul>
           </li>
@@ -30,9 +30,10 @@
       <% end %>
     </ul>
     <!-- Left Nav Section -->
-    <% if current_user&.managers&.any? %>
       <% if user_signed_in? %>
         <ul class="left">
+          <li><%= link_to "New Equipment", new_equipment_path if !current_user.managers.any? %> </li>
+          <% if current_user&.super_manager? %>
           <li class="has-dropdown request">
             <a href="#"> New Request </a>
             <ul class="dropdown">
@@ -41,8 +42,8 @@
               <li><%= link_to "Equipment", new_issuance_path  %></li>
             </ul>
           </li>
+          <% end %>
         </ul>
-      <% end %>
     <% end %>
   </section>
 </nav>
