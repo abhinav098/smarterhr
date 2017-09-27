@@ -8,7 +8,6 @@ class Access < ApplicationRecord
   validates :url, presence:true
 
   def self.cached_find(id)
-    # Rails.cache.write(['access'], expires_in: 5.minutes){ find(id) }
     Rails.cache.fetch(['access', id], expires_in: 5.minutes){ find(id) }
   end
 
