@@ -1,6 +1,13 @@
 <div class = "panel">
 	<h3> Request For an access </h3>
 	<%= form_for @access do |f| %>
+		<% if @access.errors.present? %>
+		<ul class="warning">
+		    <% @access.errors.full_messages.each do |message| %>
+		    <li><%= message%></li>
+		    <% end %>
+		</ul>
+		<% end %>
 	  <%= f.label :name %>
 	  <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Name', cached: true %>
 

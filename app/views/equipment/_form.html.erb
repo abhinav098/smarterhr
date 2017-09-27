@@ -1,6 +1,13 @@
 <div class = "panel">
 	<h3> Add an Equipment </h3>
 	<%= form_for @equipment do |f| %>
+	<% if @equipment.errors.present? %>
+		<ul class="warning">
+		    <% @equipment.errors.full_messages.each do |message| %>
+		    <li><%= message%></li>
+		    <% end %>
+		</ul>
+	<% end %>
 	  <%= f.label :name %>
 	  <%= f.text_field :name,  class: 'form-control', placeholder: 'Enter Name', cached: true  %>
 

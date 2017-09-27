@@ -1,6 +1,13 @@
 <div class = "panel">
 	<h3> Request for an Equipment </h3>
 	<%= form_for Issuance.new do |f| %>
+	<% if Issuance.new.errors.present? %>
+		<ul class="warning">
+		    <% Issuance.new.errors.full_messages.each do |message| %>
+		    <li><%= message%></li>
+		    <% end %>
+		</ul>
+	<% end %>
 	  <%= f.label :name %>
 	  <%= select("equipment","id", Equipment.all.map{ |e| [e.name, e.id]}, {prompt: 'Select Equipment Name'}) %>
 

@@ -15,8 +15,7 @@ class LeavesController < ApplicationController
 
 	def create
 		@leave = current_user.leaves.new(leave_params)
-		if @leave.correct_leave
-			@leave.save
+		if @leave.correct_leave && @leave.save
 			flash[:success] = 'Leave has been successfully requested.'
 			redirect_to :leaves
 		else

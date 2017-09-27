@@ -1,6 +1,13 @@
 <div class = "panel">
 	<h1> Apply For a leave </h1>
 	<%= form_for @leave do |f| %>
+		<% if @leave.errors.present? %>
+		<ul class="warning">
+	    	<% @leave.errors.full_messages.each do |message| %>
+	    		<li><%= message%></li>
+	    	<% end %>
+		</ul>
+	<% end %>
 	  <%= f.label :from %>
 	  <%= f.date_field :from_date, class: 'form-control', placeholder: 'Select From Date' %>
 
