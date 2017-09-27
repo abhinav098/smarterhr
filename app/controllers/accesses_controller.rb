@@ -13,7 +13,7 @@ class AccessesController < ApplicationController
   def create
     @access = Access.create(access_params)
     if @access.save
-      @issuance = @access.issuances.create(user_id: current_user.id)
+      @issuance = @access.issuances.create(user_id: current_user.id, description: @access.description)
       flash[:success]= "Access Created Successfully"
       redirect_to access_issuance_path(@access, @issuance)
     else
