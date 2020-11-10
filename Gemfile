@@ -38,6 +38,7 @@ gem 'devise'
 gem "simple_calendar", "~> 2.0"
 gem 'pg'
 gem 'foundation-rails'
+gem 'autoprefixer-rails'
 gem'faker'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

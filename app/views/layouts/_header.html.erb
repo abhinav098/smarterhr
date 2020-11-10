@@ -1,54 +1,40 @@
-<nav class="top-bar" data-topbar role="navigation">
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="/">SmarterHR</a></h1>
-    </li>
-  </ul>
-
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-      <%if user_signed_in? %>
-          <li class="has-dropdown equipment">
-            <a href="#">Requests </a>
-            <ul class="dropdown">
-              <li><%= link_to  "My Requests", issuances_path if current_user.employee? %></li>
-              <li><%= link_to "Employee requests", issuances_path(manager: true) if current_user.manager?%></li>
-            </ul>
-          </li>
-        <li>
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="menu" data-dropdown-menu>
+      <li class="menu-text"><a href="/">SmarterHR</a></li>
+      <li>
+        <li><%= link_to  "My Requests", issuances_path if current_user.employee? %></li>
+        <li><%= link_to "Employee requests", issuances_path(manager: true) if current_user.manager?%></li>
       </li>
-       <li class="has-dropdown profile">
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <% if current_user&.super_manager? %>
+        <li>
+          <a href="#">Equipment</a>
+          <ul class="menu vertical">
+            <li><%= link_to "All Equipment", equipment_index_path  %></li>
+            <li><%= link_to "New Equipment", new_equipment_path %> </li>
+          </ul>
+        </li>
+      <% else %>
+        <li>
+          <a href="#">New Request </a>
+          <ul class="menu vertical">
+            <li><%= link_to "Access", new_access_path  %></li>
+            <li><%= link_to "Leave", new_leave_path  %></li>
+            <li><%= link_to "Equipment", new_issuance_path  %></li>
+          </ul>
+        </li>
+      <% end %>
+      <li>
         <a href="#"> <%= current_user.full_name.capitalize %> </a>
-        <ul class="dropdown">
+        <ul class="menu vertical">
           <li> <%= link_to "Profile",edit_user_registration_path %></li>
           <li> <%= link_to "SignOut",destroy_user_session_path, method: :delete%></li>
         </ul>
-       </li>
-      <% end %>
+      </li>
     </ul>
-    <!-- Left Nav Section -->
-      <% if user_signed_in? %>
-        <ul class="left">
-          <% if current_user&.super_manager? %>
-          <li class="has-dropdown request">
-            <a href="#"> Equipment </a>
-            <ul class="dropdown">
-              <li><%= link_to "All Equipment", equipment_index_path  %></li>
-              <li><%= link_to "New Equipment", new_equipment_path %> </li>
-            </ul>
-          </li>
-          <% else %>
-          <li class="has-dropdown request">
-            <a href="#"> New Request </a>
-            <ul class="dropdown">
-              <li><%= link_to "Access", new_access_path  %></li>
-              <li><%= link_to "Leave", new_leave_path  %></li>
-              <li><%= link_to "Equipment", new_issuance_path  %></li>
-            </ul>
-          </li>
-          <% end %>
-        </ul>
-    <% end %>
-  </section>
-</nav>
+  </div>
+</div>
